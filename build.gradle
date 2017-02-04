@@ -1,0 +1,54 @@
+ext {
+    jdkVersion = 1.8
+
+    jettyVersion = "9.3.12.v20160915"
+    junitVersion = "4.+"
+    log4jVersion = "2.7"
+    jetbrainsAnnotationVersion = "15.0"
+    jacksonVersion = "2.8.6"
+}
+
+allprojects {
+    group = "boom"
+    version = "1.0-SNAPSHOT"
+
+    apply plugin: "java"
+    apply plugin: 'checkstyle'
+
+    repositories {
+        mavenCentral()
+    }
+
+    sourceCompatibility = jdkVersion
+    targetCompatibility = jdkVersion
+}
+
+subprojects {
+    checkstyle {
+        ignoreFailures = false
+        toolVersion = '7.5'
+        configFile = rootProject.file('config/checkstyle/checkstyle.xml')
+    }
+
+    tasks.withType(Checkstyle) {
+        reports {
+            xml.enabled false
+            html.destination "$rootProject.buildDir/report/${project.name}.html"
+            html.stylesheet resources.text.fromFile(rootProject.file('config/checkstyle/checkstyle-custom.xsl'))
+        }
+    }
+
+}
+
+// common libraries declaration
+ext.libraries = [
+        jetty_server : "org.eclipse.jetty:jetty-server:$jettyVersion",
+        jetty_servlet: "org.eclipse.jetty:jetty-servlet:$jettyVersion",
+        junit: "junit:junit:$junitVersion",
+        log4j: [
+                "org.apache.logging.log4j:log4j-api:$log4jVersion",
+                "org.apache.logging.log4j:log4j-core:$log4jVersion"
+        ],
+        jetbrainsAnnotations: "org.jetbrains:annotations:$jetbrainsAnnotationVersion",
+        jackson: "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion"
+]
