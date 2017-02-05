@@ -32,9 +32,10 @@ public class LobbyTest {
 
     @Test
     public void validate_get_address() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/echo").param("name", "Test name"))
+        String param = "Test name";
+        mockMvc.perform(MockMvcRequestBuilders.get("/echo").param("name", param))
                 .andExpect(status().isOk())
-                .andExpect(content().string("Test name"));
+                .andExpect(content().string(param));
     }
 
 }
