@@ -2,14 +2,24 @@ plugins {
     id "org.springframework.boot" version "1.5.1.RELEASE"
 }
 
+def js = [
+        "org.webjars:webjars-locator",
+        "org.webjars:sockjs-client:1.0.2",
+        "org.webjars:stomp-websocket:2.3.3",
+        "org.webjars:bootstrap:3.3.7",
+        "org.webjars:jquery:3.1.0",
+        "org.webjars.bower:github-com-CreateJS-PreloadJS:0.6.2",
+        "org.webjars.bower:EaselJS:0.8.2",
+        "org.webjars.bower:SoundJS:0.6.2"
+]
+
 dependencies {
     compile "org.springframework.boot:spring-boot-starter-websocket"
+    compile js
 
-    compile("org.webjars:webjars-locator")
-    compile("org.webjars:sockjs-client:1.0.2")
-    compile("org.webjars:stomp-websocket:2.3.3")
-    compile("org.webjars:bootstrap:3.3.7")
-    compile("org.webjars:jquery:3.1.0")
+    compileOnly rootProject.libraries.jetbrainsAnnotations
+    compileOnly rootProject.libraries.lombok
+
 
     testCompile "org.springframework.boot:spring-boot-starter-test"
 }

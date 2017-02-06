@@ -1,7 +1,10 @@
 package com.boom.ingame.util;
 
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
 
 public class V {
     private static final double TOLERANCE = 0.01;
@@ -14,7 +17,8 @@ public class V {
         this.y = y;
     }
 
-    public static V of(double x,  double y) {
+    @JsonCreator
+    public static V of(@JsonProperty("x") double x, @JsonProperty("y") double y) {
         return new V(x, y);
     }
 

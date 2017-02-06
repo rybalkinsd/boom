@@ -6,6 +6,7 @@ ext {
     log4jVersion = "2.7"
     jetbrainsAnnotationVersion = "15.0"
     jacksonVersion = "2.8.6"
+    lombokVersion = "1.16.12"
 }
 
 allprojects {
@@ -25,7 +26,7 @@ allprojects {
 
 subprojects {
     checkstyle {
-        ignoreFailures = false
+        ignoreFailures = true
         toolVersion = '7.5'
         configFile = rootProject.file('config/checkstyle/checkstyle.xml')
     }
@@ -50,5 +51,6 @@ ext.libraries = [
                 "org.apache.logging.log4j:log4j-core:$log4jVersion"
         ],
         jetbrainsAnnotations: "org.jetbrains:annotations:$jetbrainsAnnotationVersion",
-        jackson: "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion"
+        jackson: "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion",
+        lombok: "org.projectlombok:lombok:$lombokVersion"
 ]

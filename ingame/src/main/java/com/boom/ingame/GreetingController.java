@@ -19,9 +19,8 @@ public class GreetingController {
     @MessageMapping("/move")
     @SendTo("/topic/greetings")
     public String move(Move move) throws Exception {
-        Thread.sleep(1000); // simulated delay
         System.out.println(move);
-        return "Moved";
+        return "Move";
     }
 
 }
